@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        #pickupMtaani{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <title>Checkout</title>
+</head>
+<body>
+    <form action="" method="post">
+        <h1>Form</h1>
+        <select name="deliveryOptions" id="deliveryOptions">
+            <option value="">Pick up at Our Shop</option>
+        </select>
+        <div id="pickupMtaaniAgents"></div>
+        <button type="reset">Submit</button>
+        <div>
+            <h3>Shipping cost:</h3>
+            <h3 id="pickupMtaaniCost"></h3>
+        </div>
+    </form>
+    <!--<script src="https://unpkg.com/pickup-mtaani-client"></script>-->
+    <script src="script.js"></script>
+    <script>
+        let deliveryOptions = document.getElementById('deliveryOptions')
+        let pickupMtaaniAgents = document.getElementById('pickupMtaaniAgents');
+        let pickupMtaaniCost = document.getElementById('pickupMtaaniCost')
+        window.pickUpMtaaniOption(deliveryOptions,pickupMtaaniAgents,pickupMtaaniCost);
+    </script>
+</body>
+</html>
