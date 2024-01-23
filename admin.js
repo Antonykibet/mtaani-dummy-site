@@ -15,7 +15,7 @@ function getSiteId(){
     return siteId
 }
 async function getSiteConfig(){
-    let response = await fetch(`http://146.190.155.200:3500/api/getConfig?siteId=${getSiteId()}`)
+    let response = await fetch(`http://146.190.155.200/api/getConfig?siteId=${getSiteId()}`)
     return await response.json()
 }
 getSiteConfig().then((result)=>{
@@ -29,7 +29,7 @@ async function renderHtml(){
     let modal =  document.createElement('div')
     modal.style.cssText='background-color:white;padding:24px;'
     modal.innerHTML=`
-        <form action='http://146.190.155.200:3500/api/config?siteId=${getSiteId()}' method='post'>
+        <form action='http://146.190.155.200/api/config?siteId=${getSiteId()}' method='post'>
             <div>
                 <label>Work with Pickup Mtaani:</label>
                 <input id='availability' name='available' type='checkbox'>
@@ -56,7 +56,7 @@ async function renderHtml(){
     }
     availabilityCheckbox.addEventListener('click',async(event)=>{
         if(event.target.checked == true){
-            await fetch(`http://146.190.155.200:3500/api/toggleAvailability?siteId=${getSiteId()}`,{
+            await fetch(`http://146.190.155.200/api/toggleAvailability?siteId=${getSiteId()}`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
