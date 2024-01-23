@@ -15,11 +15,11 @@ function getSiteId(){
     return siteId
 }
 async function getAgents(){
-    let response = await fetch(`http://localhost:3500/api/agents?siteId=${getSiteId()}`)
+    let response = await fetch(`http://146.190.155.200:3500/api/agents?siteId=${getSiteId()}`)
     return await response.json()
 }
 async function getPickupMtaaniCost(){
-    let response = await fetch(`http://localhost:3500/api/getConfig?siteId=${getSiteId()}`)
+    let response = await fetch(`http://146.190.155.200:3500/api/getConfig?siteId=${getSiteId()}`)
     let {price,isOn} = await response.json()
     if(!isOn){
         price=0
@@ -36,7 +36,7 @@ function agentOptionsRender(div,agents){
         let labelDropdown = document.createElement('div');
         labelDropdown.textContent = `${item.location}`;
         labelDropdown.innerHTML+=`<i style='margin-left:24px;' class="bi bi-caret-down-fill"></i>`
-        labelDropdown.style.cssText='width:50%;margin-top:8px;display:flex;justify-content:space-between;'
+        labelDropdown.style.cssText='margin-top:8px;display:flex;justify-content:space-between;'
         agentDiv.append(labelDropdown);
         labelDropdown.addEventListener('click', function() {
             // Remove any existing select elements
@@ -47,7 +47,7 @@ function agentOptionsRender(div,agents){
             // Create a new select element
             let selectElem = document.createElement('select');
             selectElem.classList.add('mtaaniSelect')
-            selectElem.style.cssText='width:50%;'
+            //selectElem.style.cssText='width:50%;'
             selectElem.setAttribute('name', 'location');
             item.agents.forEach((agent) => {
                 selectElem.innerHTML += `<option value='${item.location}:${agent}'>${agent}</option>`;
@@ -71,7 +71,6 @@ window.pickUpMtaaniOption = async function(selectElem,div,priceDiv=null) {
     selectElem.appendChild(mtaaniOption)
     selectElem.addEventListener('change', function() {
         if (this.value === 'pickupMtaani') {
-            alert('Hello');
             agentOptionsRender(div,agents); 
         }else{
             div.innerHTML=''

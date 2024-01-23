@@ -15,11 +15,10 @@ function getSiteId(){
     return siteId
 }
 async function getSiteConfig(){
-    let response = await fetch(`http://localhost:3500/api/getConfig?siteId=${getSiteId()}`)
+    let response = await fetch(`http://146.190.155.200:3500/api/getConfig?siteId=${getSiteId()}`)
     return await response.json()
 }
 getSiteConfig().then((result)=>{
-    alert(JSON.stringify(result))
     siteConfig = result
 })
 
@@ -28,9 +27,9 @@ async function renderHtml(){
     let modalBackground = document.createElement('div')
     modalBackground.style.cssText='position:fixed;display:flex;justify-content:center;align-items:center;top: 0px;bottom: 0px;width: 100vw;background-color: rgba(26, 26, 26, 0.61);backdrop-filter: blur(1px);'
     let modal =  document.createElement('div')
-    modal.style.cssText='background-color:white;width:auto;padding:24px;'
+    modal.style.cssText='background-color:white;padding:24px;'
     modal.innerHTML=`
-        <form style='display:flex;flex-direction:column;' action='http://localhost:3500/api/config?siteId=${getSiteId()}' method='post'>
+        <form action='http://146.190.155.200:3500/api/config?siteId=${getSiteId()}' method='post'>
             <div>
                 <label>Work with Pickup Mtaani:</label>
                 <input id='availability' name='available' type='checkbox'>
@@ -57,8 +56,7 @@ async function renderHtml(){
     }
     availabilityCheckbox.addEventListener('click',async(event)=>{
         if(event.target.checked == true){
-            alert('aloo')
-            await fetch(`http://localhost:3500/api/toggleAvailability?siteId=${getSiteId()}`,{
+            await fetch(`http://146.190.155.200:3500/api/toggleAvailability?siteId=${getSiteId()}`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
