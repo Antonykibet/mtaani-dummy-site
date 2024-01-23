@@ -15,11 +15,11 @@ function getSiteId(){
     return siteId
 }
 async function getAgents(){
-    let response = await fetch(`http://146.190.155.200/api/agents?siteId=${getSiteId()}`)
+    let response = await fetch(`https://n3vj0vz2-3500.uks1.devtunnels.ms/api/agents?siteId=${getSiteId()}`)
     return await response.json()
 }
 async function getPickupMtaaniCost(){
-    let response = await fetch(`http://146.190.155.200/api/getConfig?siteId=${getSiteId()}`)
+    let response = await fetch(`https://n3vj0vz2-3500.uks1.devtunnels.ms/api/getConfig?siteId=${getSiteId()}`)
     let {price,isOn} = await response.json()
     if(!isOn){
         price=0
